@@ -39,10 +39,6 @@ const MainLayout = ({ onLogout }) => {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <Button variant="primary" onClick={onLogout}>
-            <UploadCloud className="w-4 h-4 mr-2" />
-            Export
-          </Button>
           <Button variant="ghost" size="icon" onClick={onLogout}>
             <LogOut className="w-5 h-5 text-gray-500" />
           </Button>

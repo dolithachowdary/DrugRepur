@@ -7,6 +7,7 @@ import { Label } from './ui/label';
 
 const LoginPage = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
+  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -17,17 +18,23 @@ const LoginPage = ({ onLogin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setError('');
 
-    // Simulate API call
+    // Simulate API call with dummy credentials
     setTimeout(() => {
-      onLogin();
-      setIsLoading(false);
-    }, 1500);
+      if (formData.email === 'admin@gmail.com' && formData.password === '123456') {
+        onLogin();
+      } else {
+        setError('Invalid email or password. Please try again.');
+        setIsLoading(false);
+      }
+    }, 1200);
   };
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setFormData(prev => ({ ...prev, [id]: value }));
+    if (error) setError('');
   };
 
   return (
@@ -135,6 +142,20 @@ const LoginPage = ({ onLogin }) => {
               Sign Up
             </button>
           </div>
+
+          <AnimatePresence mode="wait">
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="mb-6 p-3 bg-red-50 border border-red-100 text-red-600 text-sm rounded-xl flex items-center gap-2"
+              >
+                <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
+                {error}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           <AnimatePresence mode="wait">
             <motion.div
