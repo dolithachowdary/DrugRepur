@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LayoutDashboard, Search, Target, BarChart, TestTube, Dna, UploadCloud, LogOut } from 'lucide-react';
+import { LayoutDashboard, Search, Target, BarChart, Dna, UploadCloud, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import Dashboard from '../pages/Dashboard';
 import DrugSearch from '../pages/DrugSearch';
 import TargetAnalysis from '../pages/TargetAnalysis';
 import RepurposingResults from '../pages/RepurposingResults';
-import MolecularViewer from '../pages/MolecularViewer';
+
 
 const navItems = [
   { name: 'Dashboard', icon: LayoutDashboard, component: Dashboard },
   { name: 'Drug Search', icon: Search, component: DrugSearch },
   { name: 'Target Analysis', icon: Target, component: TargetAnalysis },
   { name: 'Repurposing Results', icon: BarChart, component: RepurposingResults },
-  { name: 'Molecular Viewer', icon: TestTube, component: MolecularViewer },
 ];
 
 const MainLayout = ({ onLogout }) => {
